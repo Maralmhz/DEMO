@@ -1618,6 +1618,43 @@ function gerarPDFResumo() {
     removerItem(id);
 }
 
+// ========================
+// CONTROLE DO WIZARD (PASSO A PASSO)
+// ========================
+
+function showStep(stepNumber) {
+    // 1. Esconde todos os passos
+    document.querySelectorAll('.wizard-step').forEach(el => el.classList.remove('active'));
+    
+    // 2. Mostra o passo atual
+    document.getElementById('step' + stepNumber).classList.add('active');
+    
+    // 3. Atualiza a barra de topo (bolinhas)
+    document.querySelectorAll('.step-indicator').forEach(el => {
+        el.classList.remove('active');
+        if (el.dataset.step == stepNumber) el.classList.add('active');
+    });
+
+    // Rola para o topo suavemente para o usuário ver o início do formulário
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextStep(step) {
+    // Validação Opcional: Obrigar digitar placa no passo 1
+    if (step === 2) {
+        const placa = document.getElementById('placa').value;
+        if (!placa) {
+            alert('⚠️ Por favor, digite a PLACA antes de continuar.');
+            document.getElementById('placa').focus();
+            return;
+        }
+    }
+    showStep(step);
+}
+
+function prevStep(step) {
+    showStep(step);
+}
 
     </script>
     
@@ -1627,6 +1664,7 @@ function gerarPDFResumo() {
 
 </body>
 </html>
+
 
 
 
