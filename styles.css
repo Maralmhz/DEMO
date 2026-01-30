@@ -773,7 +773,7 @@ button {
     }
     
     .header {
-        padding: 15px;
+        display: none !important;
     }
     .quebra-pagina-antes {
         margin-top: 50px !important;
@@ -1041,6 +1041,7 @@ button {
 
 
 </style>
+
 
 
 
